@@ -1,5 +1,7 @@
 /** @format */
 
+import { Navbar } from "@/components/NavBar";
+import Providers from "@/components/Providers/Providers";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
@@ -30,9 +32,11 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body>
-        <main className="min-h-screen bg-background flex flex-col items-center">
+        <Providers>
+          <Navbar />
+
           {children}
-        </main>
+        </Providers>
       </body>
     </html>
   );
