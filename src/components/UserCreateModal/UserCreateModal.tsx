@@ -1,7 +1,8 @@
 "use client";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import getCreateUserMutation from "@/api/UserManagement/getCreateUserMutation";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import Plus from "../Icons/Plus";
 import { Button } from "../ui/button";
 import {
@@ -14,29 +15,26 @@ import {
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 
-type FormValues = {
+export type CreateUserForm = {
   password: string;
   email: string;
 };
 
 function UserCreateModal() {
-  const supabase = createClientComponentClient();
-  const { register, handleSubmit } = useForm();
+  const queryClient = useQueryClient();
+  const createUserMutation = useMutation(getCreateUserMutation(queryClient));
+
+  const { register, handleSubmit } = useForm<CreateUserForm>();
+
   const [open, setOpen] = useState(false);
-  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    const { email, password } = data;
-
-    const { error } = await supabase.auth.admin.createUser({
-      email,
-      password,
-    });
-
+  const onSubmit: SubmitHandler<CreateUserForm> = (data) => {
+    createUserMutation.mutate(data);
     setOpen(false);
   };
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger>
+      <DialogTrigger asChild>
         <Button
           variant={"secondary"}
           className="flex gap-2"

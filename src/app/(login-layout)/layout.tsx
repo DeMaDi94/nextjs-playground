@@ -1,7 +1,4 @@
-/** @format */
-
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-import { cookies } from "next/headers";
+import fetchUser from "@/api/UserManagement/fetchUser";
 import { redirect } from "next/navigation";
 import "../globals.css";
 
@@ -15,17 +12,9 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const supabase = createServerComponentClient({ cookies });
+  const { data: user } = await fetchUser();
 
-  const { data, error } = await supabase.auth.getSession();
-
-  if (error) {
-    console.log(error);
-  }
-
-  if (data.session) {
-    redirect("/");
-  }
+  if (user) redirect("/");
 
   return (
     <html lang="en">

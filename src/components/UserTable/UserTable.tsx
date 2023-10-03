@@ -1,30 +1,17 @@
 "use client";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import { useQuery } from "@tanstack/react-query";
 import UserCreateModal from "../UserCreateModal";
 import { Card } from "../ui/card";
 import {
   Table,
   TableBody,
-  TableCell,
   TableHead,
   TableHeader,
   TableRow,
 } from "../ui/table";
 
 function UserTable() {
-  const supabase = createClientComponentClient();
-
-  const { data: users } = useQuery({
-    queryKey: ["users"],
-    queryFn: async () => {
-      const {
-        data: { users },
-      } = await supabase.auth.admin.listUsers();
-
-      return users;
-    },
-  });
+  // const { data: users, fetchStatus } = useSuspenseQuery(getUsersQuery());
+  // if (fetchStatus === "fetching") return <></>;
 
   return (
     <Card className="col-start-2">
@@ -41,11 +28,11 @@ function UserTable() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {users?.map((user) => (
+          {/* {users?.map((user) => (
             <TableRow>
               <TableCell className="font-medium">{user.email}</TableCell>
             </TableRow>
-          ))}
+          ))} */}
         </TableBody>
       </Table>
     </Card>

@@ -13,7 +13,7 @@ const Plus = (props: HTMLAttributes<HTMLOrSVGElement>) => {
       <g
         id="SVGRepo_tracerCarrier"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       ></g>
       <g id="SVGRepo_iconCarrier">
         <path
@@ -21,7 +21,7 @@ const Plus = (props: HTMLAttributes<HTMLOrSVGElement>) => {
           stroke="#000000"
           stroke-width="2"
           stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeLinejoin="round"
         ></path>
       </g>
     </svg>
