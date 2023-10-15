@@ -10,9 +10,6 @@ import {
 } from "../ui/table";
 
 function UserTable() {
-  // const { data: users, fetchStatus } = useSuspenseQuery(getUsersQuery());
-  // if (fetchStatus === "fetching") return <></>;
-
   return (
     <Card className="col-start-2">
       <div className="p-2 w-full border-b flex">

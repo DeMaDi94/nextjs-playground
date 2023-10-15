@@ -1,3 +1,4 @@
+"use client";
 import getLoginUserMutation from "@/api/UserManagement/getUserLoginMutation";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";

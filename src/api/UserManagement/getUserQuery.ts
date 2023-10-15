@@ -1,9 +1,9 @@
-import fetchUsers from "./fetchUser";
+import fetchUser from "./fetchUser";
 
 const getUserQuery = () => {
   return {
     queryKey: ["users"],
-    queryFn: async () => await fetchUsers(),
+    queryFn: async () => await fetchUser(),
   };
 };
 export default getUserQuery;
