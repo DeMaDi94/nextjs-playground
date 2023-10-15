@@ -1,6 +1,6 @@
 import wrappedFetch from "../fetch/wrappedFetch";
 
-const logoutUser = async (data: string) => {
+const logoutUser = async () => {
   const response = await wrappedFetch(
     (process.env.API_URL + "/api/user/logout") as string,
     { method: "post" },

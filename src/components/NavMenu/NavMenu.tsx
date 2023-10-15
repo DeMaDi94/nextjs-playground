@@ -20,7 +20,7 @@ function NavMenu() {
   const router = useRouter();
 
   const logout = () => {
-    mutate("test", {
+    mutate(undefined, {
       onSuccess: (data) => {
         toast.success(data.message);
         router.push("/login");
@@ -33,7 +33,7 @@ function NavMenu() {
       <DropdownMenuTrigger asChild>
         <Button variant="outline">
           {open ? (
-            <Cross className="w-6 h-6 " />
+            <Cross className="w-6 h-6" />
           ) : (
             <Hamburger className="w-6 h-6" />
           )}
@@ -44,7 +44,7 @@ function NavMenu() {
           Einstellungen
         </DropdownMenuLabel>
         <DropdownMenuItem
-          onClick={() => console.log("log out")}
+          onClick={() => router.push("users")}
           className="hover:outline-none hover:cursor-pointer hover:bg-gray-100 px-2 py-1 rounded"
         >
           Benutzer
